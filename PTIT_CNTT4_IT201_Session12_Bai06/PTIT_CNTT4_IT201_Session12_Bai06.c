@@ -4,11 +4,13 @@
 typedef struct Node {
     int data;
     struct Node* next;
+    struct Node* prev;
 }Node;
 Node* createNode(int date) {
     Node* newNode=(Node*)malloc(sizeof(Node));
     newNode->data=date;
     newNode->next=NULL;
+    newNode->prev=NULL;
     return newNode;
 }
 int length(Node* head) {
@@ -20,11 +22,15 @@ int length(Node* head) {
     return count;
 }
 void printList(Node* head) {
-    while (head!=NULL) {
-        printf("%d->",head->data);
+    while(head!=NULL) {
+        if (head->next==NULL) {
+            printf("%d -> ",head->data);
+            break;
+        }
+        printf("%d <-> ",head->data);
         head=head->next;
     }
-    printf("NULL\n");
+    printf("NULL");
 }
 void search(Node* head,int lenght) {
     int mid=lenght/2;
