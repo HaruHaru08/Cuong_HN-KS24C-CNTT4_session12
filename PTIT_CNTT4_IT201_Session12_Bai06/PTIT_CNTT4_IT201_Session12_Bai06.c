@@ -1,40 +1,53 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct Node{
+typedef struct Node {
     int data;
     struct Node* next;
-    struct Node* prev;
 }Node;
-Node* createNode(int data) {
+Node* createNode(int date) {
     Node* newNode=(Node*)malloc(sizeof(Node));
-    newNode->data=data;
+    newNode->data=date;
     newNode->next=NULL;
-    newNode->prev=NULL;
     return newNode;
 }
+int length(Node* head) {
+    int count=0;
+    while (head!=NULL) {
+        count++;
+        head=head->next;
+    }
+    return count;
+}
 void printList(Node* head) {
+    while (head!=NULL) {
+        printf("%d->",head->data);
+        head=head->next;
+    }
+    printf("NULL\n");
+}
+void search(Node* head,int lenght) {
+    int mid=lenght/2;
     int count=1;
-    while(head!=NULL) {
-        printf("data %d: %d\n",count,head->data);
+    for (int i=0;i<mid;i++) {
         head=head->next;
         count++;
     }
+    printf("Node %d: %d",count,head->data);
 }
-int main() {
-    Node* head=createNode(10);
-    Node* Node1=createNode(20);
-    Node* Node2=createNode(30);
-    Node* Node3=createNode(40);
-    Node* Node4=createNode(50);
+int main(void) {
+    Node* head=createNode(5);
+    Node* Node1=createNode(4);
+    Node* Node2=createNode(3);
+    Node* Node3=createNode(2);
+    Node* Node4=createNode(1);
+    // Node* Node5=createNode(6);
     head->next=Node1;
-    Node1->prev=head;
     Node1->next=Node2;
-    Node2->prev=Node1;
     Node2->next=Node3;
-    Node3->prev=Node2;
     Node3->next=Node4;
-    Node4->prev=Node3;
-    printList(head);
+    // Node4->next=Node5;
+    int lenght=length(head);
+    search(head,lenght);
     return 0;
 }
