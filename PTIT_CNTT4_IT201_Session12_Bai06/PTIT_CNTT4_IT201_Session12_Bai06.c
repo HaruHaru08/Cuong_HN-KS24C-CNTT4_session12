@@ -53,7 +53,7 @@ int main(void) {
     Node2->next=Node3;
     Node3->next=Node4;
     // Node4->next=Node5;
-    int lenght=length(head);
-    search(head,lenght);
+    int lengths=length(head);
+    search(head,lengths);
     return 0;
 }
